@@ -15,8 +15,36 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.9]
-        ansible-version: [v29,v212,v213]
+        include:
+          - python-version: 3.6
+            ansible-version: v28
+          - python-version: 3.6
+            ansible-version: v29
+          - python-version: 3.6
+            ansible-version: v34
+          - python-version: 3.7
+            ansible-version: v34
+          - python-version: 3.7
+            ansible-version: v41
+          - python-version: 3.8
+            ansible-version: v34
+          - python-version: 3.8
+            ansible-version: v51
+          - python-version: 3.8
+            ansible-version: v61
+          - python-version: 3.9
+            ansible-version: v51
+          - python-version: 3.9
+            ansible-version: v61
+          - python-version: "3.10"
+            ansible-version: v51
+          - python-version: "3.10"
+            ansible-version: v61
+          - python-version: "3.11.0-beta.4"
+            ansible-version: v51
+          - python-version: "3.11.0-beta.4"
+            ansible-version: v61
+      fail-fast: false
 
     steps:
     - uses: actions/checkout@v1
@@ -27,8 +55,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install tox tox-gh-actions
+        pip install tox
     - name: Test with tox
-      run: tox
+      run: tox -e ansible_${{ matrix.ansible-version }}
       env:
         ANSIBLE_VERSION: ${{ matrix.ansible-version }}

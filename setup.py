@@ -121,7 +121,9 @@ setup(
     tests_require=['tox'],
     # setup_requires=['pypandoc<1.2.0', 'setuptools-markdown'],
     setup_requires=['setuptools-markdown'],
-    install_requires=['ansible<7.0.0', 'pytest'],
+    install_requires=[
+        "ansible",
+        "pytest"],
     cmdclass={
         'test': ToxTestCommand,
         'clean': CleanCommand,
@@ -135,7 +137,12 @@ setup(
         'Topic :: Software Development :: Quality Assurance',
         'Topic :: Utilities',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3'
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
     ],
 )
